@@ -13,7 +13,7 @@ import java.util.Set;
 //@ToString
 
 @Entity
-@Table(name="roles")
+@Table(name="roles",schema="public")
 public class Role {
 
     @Id
@@ -23,6 +23,6 @@ public class Role {
     @Column(name="name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     private Set<User> users;
 }
