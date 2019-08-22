@@ -46,7 +46,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">
-                <spring:message code="login"/>
+                <spring:message code="log.in"/>
             </button>
             <h4 class="text-center"><a href="${contextPath}/registration">
                 <spring:message code="create.account"/>

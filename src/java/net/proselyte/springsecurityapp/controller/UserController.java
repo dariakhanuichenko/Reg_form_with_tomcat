@@ -39,6 +39,10 @@ public class UserController {
         return "registration";
     }
 
+    @RequestMapping(value="/api")
+    public String getMainPage(){
+        return "index";
+    }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm,
                                BindingResult bindingResult, Model model) {
