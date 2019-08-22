@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -26,34 +27,45 @@
 
 <body>
 
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    <a href="?lang=ua">ua</a>
+    </span>
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="username" class="form-control" placeholder="Username"
-                            autofocus="true"></form:input>
+                <spring:message code="username" var="placeholder"/>
+                <form:input type="text" path="username" class="form-control" placeholder='${placeholder}'
+                            autofocus="true"/>
                 <form:errors path="username"></form:errors>
             </div>
         </spring:bind>
 
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                <spring:message code="password" var="placeholder"/>
+                <form:input type="password" path="password" class="form-control" placeholder='${placeholder}'
+                />
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
 
         <spring:bind path="confirmPassword">
             <div class="form-group ${status.error ? 'has-error' : ''}">
+                <spring:message code="confirm.password" var="placeholder"/>
                 <form:input type="password" path="confirmPassword" class="form-control"
-                            placeholder="Confirm your password"></form:input>
+                            placeholder='${placeholder}'
+                />
                 <form:errors path="confirmPassword"></form:errors>
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            <spring:message code="submit"/>
+        </button>
     </form:form>
 
 </div>
