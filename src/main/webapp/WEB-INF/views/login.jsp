@@ -6,7 +6,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,19 +16,27 @@
 
     <title>Log in with your account</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 </head>
 
 <body>
-<span style="float: right">
-    <a href="?lang=en">en</a>
-    <a href="?lang=ua">ua</a>
+
+<nav class="navbar sticky-top navbar-inverse bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class ="locale"  style="float: right">
+    <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
+    <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
     </span>
+</nav>
+
 <div class="container">
 
     <form method="POST" action="${contextPath}/login" class="form-signin">
@@ -38,10 +46,12 @@
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder=<spring:message code="username"/>
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder=<spring:message code="password"/>
-                    />
+            <input name="username" type="text" class="form-control" placeholder=
+            <spring:message code="username"/>
+                    autofocus="true"/>
+            <input name="password" type="password" class="form-control" placeholder=
+            <spring:message code="password"/>
+            />
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
@@ -61,3 +71,4 @@
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
+

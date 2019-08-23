@@ -16,10 +16,10 @@
 
     <title>Create an account</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-
-
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
@@ -27,14 +27,22 @@
 
 <body>
 
-<span style="float: right">
-    <a href="?lang=en">en</a>
-    <a href="?lang=ua">ua</a>
+<nav class="navbar sticky-top fixed-top navbar-inverse bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+<span class ="locale"  style="float: right">
+    <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
+    <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
     </span>
-<div class="container">
+</nav>
+
+<div style="margin-top: 15px" class="container">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
-        <h2 class="form-signin-heading">Create your account</h2>
+        <h2 class="form-signin-heading">
+            <spring:message code="create.account"/>
+        </h2>
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <spring:message code="username" var="placeholder"/>

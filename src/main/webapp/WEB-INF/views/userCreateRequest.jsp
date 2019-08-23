@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Welcome</title>
+    <title>Create request</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -22,13 +20,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body>
 
-<nav class="navbar fixed-top navbar-inverse bg-primary">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<body>
+<nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+
     </button>
-<span  class ="locale" style="float: right">
+
+    <a style="color:white" class="nav-item nav-link active" href="#">
+        <spring:message code="create.request"/>
+    </a>
+    <a style="color:white" class="nav-item nav-link active" href="#">
+        <spring:message code="my.request"/>
+    </a>
+
+
+    <span style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
     <button class="btn btn-light" type="submit" onclick="document.forms['logoutForm'].submit()">
@@ -37,23 +46,21 @@
     </span>
 </nav>
 
-<div style="margin-top: 15px" class="container">
-
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
-        <h2>Welcome ${pageContext.request.userPrincipal.name} |
-<%--            <a onclick="document.forms['logoutForm'].submit()">--%>
-<%--            <spring:message code="logout"/>--%>
-<%--        </a>--%>
-        </h2>
-
-    </c:if>
-
-</div>
+<form class="form-signin">
+    <div style="margin-top: 15px" class="container">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">
+                <spring:message code="new.request"/>
+            </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            <spring:message code="create"/>
+        </button>
+    </div>
+</form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>
