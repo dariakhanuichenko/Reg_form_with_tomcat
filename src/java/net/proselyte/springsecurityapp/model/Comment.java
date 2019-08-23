@@ -4,28 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
 @Table(name="request", schema="public")
-public class Request {
-
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name="request")
-    String request;
+    @Column(name="created")
+    LocalDate date;
 
-    @Column(name="status")
-    String status;
-
-    @Column(name="price")
-    Long price;
+    @Column(name="comment")
+    String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    User master;
-
+    @JoinColumn(name = "request_id")
+    Request request;
 }

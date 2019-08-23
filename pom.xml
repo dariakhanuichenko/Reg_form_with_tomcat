@@ -76,6 +76,7 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
+      <version>42.2.4</version>
     </dependency>
 
     <dependency>
@@ -119,6 +120,18 @@
   </dependencies>
 
   <build>
+
+<!--      <plugins>-->
+<!--        <plugin>-->
+<!--          <groupId>org.apache.maven.plugins</groupId>-->
+<!--          <artifactId>maven-compiler-plugin</artifactId>-->
+<!--          <configuration>-->
+<!--            <source>1.8</source>-->
+<!--            <target>1.8</target>-->
+<!--          </configuration>-->
+<!--        </plugin>-->
+<!--      </plugins>-->
+
     <finalName>SpriingSequrityApp</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>

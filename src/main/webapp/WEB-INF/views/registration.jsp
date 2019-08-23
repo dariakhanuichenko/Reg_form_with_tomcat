@@ -27,7 +27,7 @@
 
 <body>
 
-<nav class="navbar sticky-top fixed-top navbar-inverse bg-primary">
+<nav class="navbar fixed-top navbar-inverse bg-primary">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
