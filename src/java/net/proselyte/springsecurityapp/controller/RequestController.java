@@ -1,6 +1,6 @@
 package net.proselyte.springsecurityapp.controller;
 
-import net.proselyte.springsecurityapp.service.RequestServiceImpl;
+import net.proselyte.springsecurityapp.service.implementation.RequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

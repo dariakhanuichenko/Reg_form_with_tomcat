@@ -8,10 +8,10 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_MASTER','ROLE_MANAGER')"/>
         <intercept-url pattern="/api" access="permitAll()"/>
-        <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_MANAGER','ROLE_MASTER')"/>
+        <intercept-url pattern="/admin" access="hasRole('ROLE_MANAGER')"/>
 
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>
@@ -26,7 +26,7 @@
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="net.proselyte.springsecurityapp.service.UserDetailsServiceImpl"></beans:bean>
+                class="net.proselyte.springsecurityapp.service.implementation.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

@@ -1,8 +1,9 @@
-package net.proselyte.springsecurityapp.service;
+package net.proselyte.springsecurityapp.service.implementation;
 
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import net.proselyte.springsecurityapp.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package net.proselyte.springsecurityapp.service;
+package net.proselyte.springsecurityapp.service.implementation;
 
 import net.proselyte.springsecurityapp.*;
 import net.proselyte.springsecurityapp.dao.UserDao;

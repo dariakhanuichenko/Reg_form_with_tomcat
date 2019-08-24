@@ -28,10 +28,12 @@
 <body>
 
 <nav class="navbar fixed-top navbar-inverse bg-primary">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-<span class ="locale"  style="float: right">
+    <span class="locale" style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
     </span>
@@ -65,12 +67,28 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <spring:message code="confirm.password" var="placeholder"/>
                 <form:input type="password" path="confirmPassword" class="form-control"
-                            placeholder='${placeholder}'
-                />
-                <form:errors path="confirmPassword"></form:errors>
+                            placeholder='${placeholder}'/>
             </div>
         </spring:bind>
 
+        <spring:bind path="roles">
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <label>
+                select your role
+            </label>
+            <form:select path="roles" class="selectpicker">
+                <form:option value="ROLE_USER">
+                    <spring:message code="role.user"/>
+                </form:option >
+                <form:option  value="ROLE_MASTER">
+                    <spring:message code="role.master"/>
+                </form:option >
+                <form:option  value="ROLE_MANAGER">
+                    <spring:message code="role.manager"/>
+                </form:option >
+            </form:select>
+        </div>
+    </spring:bind>
         <button class="btn btn-lg btn-primary btn-block" type="submit">
             <spring:message code="submit"/>
         </button>

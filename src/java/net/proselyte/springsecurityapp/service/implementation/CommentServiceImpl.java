@@ -1,6 +1,7 @@
-package net.proselyte.springsecurityapp.service;
+package net.proselyte.springsecurityapp.service.implementation;
 
 import net.proselyte.springsecurityapp.dao.CommentDao;
+import net.proselyte.springsecurityapp.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

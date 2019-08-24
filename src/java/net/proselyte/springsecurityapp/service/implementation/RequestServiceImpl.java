@@ -1,7 +1,8 @@
-package net.proselyte.springsecurityapp.service;
+package net.proselyte.springsecurityapp.service.implementation;
 
 import lombok.extern.slf4j.Slf4j;
 import net.proselyte.springsecurityapp.dao.RequestDao;
+import net.proselyte.springsecurityapp.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

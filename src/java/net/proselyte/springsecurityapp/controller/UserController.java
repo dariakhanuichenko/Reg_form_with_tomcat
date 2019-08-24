@@ -1,6 +1,7 @@
 package net.proselyte.springsecurityapp.controller;
 
 
+import net.proselyte.springsecurityapp.dto.UserDto;
 import net.proselyte.springsecurityapp.model.User;
 import net.proselyte.springsecurityapp.service.SecurityService;
 import net.proselyte.springsecurityapp.service.UserService;
@@ -35,7 +36,7 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new UserDto());
         return "registration";
     }
 
@@ -44,8 +45,9 @@ public class UserController {
         return "index";
     }
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm,
+    public String registration(@ModelAttribute("userForm") UserDto userForm,
                                BindingResult bindingResult, Model model) {
+
 
         userValidator.validate(userForm, bindingResult);
 

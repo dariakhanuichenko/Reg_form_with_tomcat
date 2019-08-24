@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Set;
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name="users", schema="public")
 public class User {

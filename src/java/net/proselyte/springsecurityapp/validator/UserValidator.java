@@ -1,6 +1,7 @@
 package net.proselyte.springsecurityapp.validator;
 
 
+import net.proselyte.springsecurityapp.dto.UserDto;
 import net.proselyte.springsecurityapp.model.User;
 import net.proselyte.springsecurityapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
 
-        User user=(User) o;
+        UserDto user=(UserDto) o;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"username","Required");
 
         if (user.getUsername().length() < 8 || user.getUsername().length() > 32) {
