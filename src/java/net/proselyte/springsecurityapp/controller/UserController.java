@@ -1,6 +1,8 @@
 package net.proselyte.springsecurityapp.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
+import net.proselyte.springsecurityapp.dto.RequestDto;
 import net.proselyte.springsecurityapp.dto.UserDto;
 import net.proselyte.springsecurityapp.model.User;
 import net.proselyte.springsecurityapp.service.SecurityService;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@Slf4j
 @Controller
 public class UserController {
 
@@ -40,10 +43,11 @@ public class UserController {
         return "registration";
     }
 
-    @RequestMapping(value="/api")
-    public String getMainPage(){
+    @RequestMapping(value = "/api")
+    public String getMainPage() {
         return "index";
     }
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") UserDto userForm,
                                BindingResult bindingResult, Model model) {
@@ -58,35 +62,50 @@ public class UserController {
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
-        return "redirect:/welcome";
+        if (userForm.getRoles().equals("ROLE_USER")) {
+            log.info("{}", userForm.getRoles().equals("ROLE_USER"));
+            return "redirect:/create_request";
+        }
+            return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout,Locale locale ) {
+    public String login(Model model, String error, String logout, Locale locale) {
         if (error != null) {
             model.addAttribute("error",
-                    ResourceBundle.getBundle("validationMessages",locale)
+                    ResourceBundle.getBundle("validationMessages", locale)
                             .getString("incorrect.usernameorpass"));
         }
 
+
         if (logout != null) {
             model.addAttribute("message",
-                    ResourceBundle.getBundle("validationMessages",locale)
-                    .getString("logout.success"));
+                    ResourceBundle.getBundle("validationMessages", locale)
+                            .getString("logout.success"));
         }
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView getLocale(Locale locale) {
+    public ModelAndView getLocale(Locale locale, UserDto user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("locale", messageSource.getMessage("locale", new String[]{locale.getDisplayName(locale)}, locale));
+//        if(user.getRoles().equals("ROLE_USER")){
+//            return "redirect:/create_request";
+//        }
+//        return "redirect:/welcome";
         return modelAndView;
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         return "welcome";
+    }
+
+    @RequestMapping(value = {"/", "/create_request"}, method = RequestMethod.GET)
+    public String create_request(Model model) {
+        model.addAttribute("requestDto", new RequestDto());
+        return "userCreateRequest";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

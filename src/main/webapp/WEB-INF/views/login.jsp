@@ -39,7 +39,7 @@
 
 <div class="container">
 
-    <form method="POST" action="${contextPath}/login" class="form-signin">
+    <form:form method="POST" action="${contextPath}/userCreateRequest" class="form-signin">
         <h2 class="form-heading">
             <spring:message code="login"/>
         </h2>
@@ -63,7 +63,7 @@
             </a></h4>
         </div>
 
-    </form>
+    </form:form>
 
 </div>
 <!-- /container -->
