@@ -102,11 +102,7 @@ public class UserController {
         return "welcome";
     }
 
-    @RequestMapping(value = {"/", "/create_request"}, method = RequestMethod.GET)
-    public String create_request(Model model) {
-        model.addAttribute("requestDto", new RequestDto());
-        return "userCreateRequest";
-    }
+
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {

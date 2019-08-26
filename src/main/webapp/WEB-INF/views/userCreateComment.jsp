@@ -40,7 +40,6 @@
         <spring:message code="create.comment"/>
     </a>
 
-
     <span style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
@@ -51,15 +50,15 @@
 </nav>
 
 
-<form:form method="POST" modelAttribute="requestDto" class="form-signin">
+<form:form method="POST" modelAttribute="commentDto" class="form-signin">
     <div style="margin-top: 15px" class="container">
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">
-                <spring:message code="new.request"/>
+                <spring:message code="new.comment"/>
             </label>
 
-                <form:textarea path="request" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
+            <form:textarea path="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
 
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit"
