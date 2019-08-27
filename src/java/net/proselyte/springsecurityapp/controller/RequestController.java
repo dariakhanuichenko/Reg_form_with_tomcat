@@ -3,7 +3,9 @@ package net.proselyte.springsecurityapp.controller;
 import lombok.extern.slf4j.Slf4j;
 import net.proselyte.springsecurityapp.dto.RequestDto;
 import net.proselyte.springsecurityapp.dto.RequestInfoDto;
+import net.proselyte.springsecurityapp.dto.RequestUpdateDto;
 import net.proselyte.springsecurityapp.dto.UserDto;
+import net.proselyte.springsecurityapp.service.UserService;
 import net.proselyte.springsecurityapp.service.implementation.RequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class RequestController {
     @Autowired
     RequestServiceImpl requestService;
 
+    @Autowired
+    UserService userService;
     @RequestMapping(value = {"/", "/create_request"}, method = RequestMethod.GET)
     public String create_request(Model model) {
         model.addAttribute("requestDto", new RequestDto());
@@ -43,6 +47,27 @@ public class RequestController {
         return "userCreateRequest";
     }
 
+    @RequestMapping(value = {"/checkAllRequests"}, method = RequestMethod.GET)
+
+    public String checkRequestsManager( Model model ) {
+
+        //log.info(requestService.getRequestByUser("sasha123451").toString());
+        model.addAttribute("requestTitle", requestService.findAllRequestTitle("new"));
+        model.addAttribute("masters", userService.getUsernamesByRole("ROLE_MASTER"));
+        model.addAttribute("requests", new RequestInfoDto());
+        return "managerAllRequests";
+    }
+
+    @RequestMapping(value = {"/checkAllRequests"}, method = RequestMethod.POST)
+    public String checkRequestsManager(@ModelAttribute("requests") RequestInfoDto requestInfoDto,BindingResult bindingResult,
+                                        Model model) {
+        if(bindingResult.hasErrors()){
+            return "userCreateRequest";
+        }
+        return "managerAllRequests";
+    }
+
+
     @RequestMapping(value = {"/getUserRequest"}, method = RequestMethod.GET)
 
     public String getRequestByUser(Principal principal, Model model ) {
@@ -56,5 +81,4 @@ public class RequestController {
     public String getRequestByUser(Model model) {
         return "userAllRequests";
     }
-
 }

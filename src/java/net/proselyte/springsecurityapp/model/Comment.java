@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
 @Builder
 @NoArgsConstructor
@@ -18,7 +20,8 @@ public class Comment {
     Long id;
 
     @Column(name="created")
-    LocalDate date;
+    @Temporal(TemporalType.DATE)
+    Calendar date;
 
     @Column(name="comment")
     String comment;

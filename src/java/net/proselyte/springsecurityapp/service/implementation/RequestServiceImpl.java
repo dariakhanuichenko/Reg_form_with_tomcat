@@ -26,7 +26,7 @@ public class RequestServiceImpl implements RequestService {
     UserDao userDao;
 
     @Override
-    public void save(String requestDto,String username) {
+    public void save(String requestDto, String username) {
         Request request = new Request();
         request.setRequest(requestDto);
         request.setStatus("new");
@@ -37,20 +37,40 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public List<RequestInfoDto> getRequestByUser(String creator) {
-        List<RequestInfoDto> requestList= new ArrayList<>();
-         List<Request> list=requestDao.findByCreator(creator);
-        for (Request r:list
-             ) {
+        List<RequestInfoDto> requestList = new ArrayList<>();
+        List<Request> list = requestDao.findByCreator(creator);
+        for (Request r : list
+        ) {
             requestList.add(
-                        RequestInfoDto.builder()
-                        .request(r.getRequest())
-                        .status(r.getStatus())
-                        .price(Optional.ofNullable(r.getPrice()).orElse(0L).longValue())
-                        .build()
-                );
-        log.info("{}",requestList.get(requestList.size()-1).toString());}
-         return requestList;
+                    RequestInfoDto.builder()
+                            .request(r.getRequest())
+                            .status(r.getStatus())
+                            .reason(r.getReason())
+                            .price(Optional.ofNullable(r.getPrice()).orElse(0L).longValue())
+                            .build()
+            );
+            log.info("{}", requestList.get(requestList.size() - 1).toString());
+        }
+        return requestList;
     }
 
+    public List<RequestInfoDto> getRequestByStatus(String status) {
+        List<RequestInfoDto> requestList = new ArrayList<>();
+        List<Request> list = requestDao.findByStatus(status);
+        for (Request r : list
+        ) {
+            requestList.add(
+                    RequestInfoDto.builder()
+                            .request(r.getRequest())
+                            .status(r.getStatus())
+                            .price(Optional.ofNullable(r.getPrice()).orElse(0L).longValue())
+                            .build()
+            );
+        }
+        return requestList;
+    }
+    public List<String>findAllRequestTitle(String status){
+        return requestDao.findRequestByStatus(status);
+    }
 }
 

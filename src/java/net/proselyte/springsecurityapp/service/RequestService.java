@@ -9,4 +9,6 @@ public interface RequestService {
 
     void save(String user,String username);
     List<RequestInfoDto>getRequestByUser(String creator);
+    List<RequestInfoDto> getRequestByStatus(String status);
+    List<String>findAllRequestTitle(String status);
 }

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
 @Slf4j
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -19,12 +22,13 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     UserDao userDao;
 
-    public void save(String comment,String username){
-        commentDao.save(Comment.builder()
-        .date( LocalDate.now())
-        .comment(comment)
-        .user(userDao.findByUsername(username))
-        .build());
+    public void save(String comment, String username) {
+        Comment commentItem = new Comment();
+        commentItem.setDate(Calendar.getInstance());
+        commentItem.setComment(comment);
+        commentItem.setUser(userDao.findByUsername(username));
+        log.info("{}", "id" + commentItem.getId());
+        this.commentDao.save(commentItem);
 
         log.info("{}", "Save comment(Service)");
     }

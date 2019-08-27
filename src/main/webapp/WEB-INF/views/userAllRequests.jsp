@@ -61,6 +61,7 @@
             <th><spring:message code="request"/></th>
             <th><spring:message code="status"/></th>
             <th><spring:message code="price"/></th>
+            <th><spring:message code="reason"/></th>
         </tr>
         </thead>
         <c:forEach items="${requests}" var="r">
@@ -69,6 +70,7 @@
             <td><c:out value="${r.request}"/></td>
             <td><c:out value="${r.status}"/></td>
             <td><c:out value="${r.price}"/></td>
+            <td><c:out value="${r.reason}"/></td>
 
         </tr>
         </tbody></c:forEach>

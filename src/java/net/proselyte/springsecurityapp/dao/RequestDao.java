@@ -8,4 +8,7 @@ import java.util.List;
 public interface RequestDao extends JpaRepository<Request,Long> {
 
     List<Request> findByCreator(String creator);
+
+    List<Request> findByStatus(String status);
+    List<String> findRequestByStatus(String status);
 }

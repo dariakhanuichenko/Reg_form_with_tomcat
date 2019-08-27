@@ -26,6 +26,9 @@ public class Request {
     @Column(name="price")
     Long price;
 
+    @Column(name="reason")
+    String reason;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "master_id")
     User master;

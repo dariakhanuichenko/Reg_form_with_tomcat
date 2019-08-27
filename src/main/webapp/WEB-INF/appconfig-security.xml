@@ -15,6 +15,7 @@
         <intercept-url pattern="/create_request" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/getuserrequest" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/create_comment" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/checkAllRequests" access="hasRole('ROLE_MANAGER')"/>
 
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>
@@ -23,6 +24,7 @@
         <logout logout-success-url="/create_request?logout"/>
         <logout logout-success-url="/getuserrequest?logout"/>
         <logout logout-success-url="/create_comment?logout"/>
+
     </http>
 
     <authentication-manager alias="authenticationManager">

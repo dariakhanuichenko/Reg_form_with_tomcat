@@ -65,6 +65,8 @@ public class UserController {
         if (userForm.getRoles().equals("ROLE_USER")) {
             log.info("{}", userForm.getRoles().equals("ROLE_USER"));
             return "redirect:/create_request";
+        }else if (userForm.getRoles().equals("ROLE_MANAGER")){
+            return "redirect:/checkAllRequests";
         }
             return "redirect:/welcome";
     }
