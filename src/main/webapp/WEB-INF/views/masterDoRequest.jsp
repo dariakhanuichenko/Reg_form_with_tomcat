@@ -24,42 +24,44 @@
 
 <body>
 <form action="${contextPath}/login?logout">
-<nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
+    <nav style="color:white" class="navbar fixed-top navbar-dark bg-primary" >
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 
-    </button>
+        </button>
 
-    <a style="color:white" class="nav-item nav-link active" href="#">
-        <spring:message code="create.request"/>
-    </a>
-    <a style="color:white" class="nav-item nav-link active" href="#">
-        <spring:message code="my.request"/>
-    </a>
-    <a style="color:white" class="nav-item nav-link active" href="#">
-        <spring:message code="create.comment"/>
-    </a>
 
-    <span style="float: right">
+        <a style="color:white" class="nav-item nav-link active" href="#">
+            <spring:message code="process.request"/>
+        </a>
+        <a style="color:white" class="nav-item nav-link active" href="#">
+            <spring:message code="requests.in.progress"/>
+        </a>
+        <a style="color:white" class="nav-item nav-link active" href="#">
+            <spring:message code="completed.requests"/>
+        </a>
+
+
+        <span style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
-    <button class="btn btn-light" type="submit" onclick="document.forms['logoutForm'].submit()">
+    <button class="btn btn-light" type="submit"   onclick="document.forms['logoutForm'].submit()">
         <spring:message code="logout"/>
     </button>
     </span>
-</nav>
+    </nav>
 </form>
 
-<form:form method="POST" modelAttribute="commentDto" class="form-signin">
+<form:form method="POST"  modelAttribute=""  class="form-signin">
     <div style="margin-top: 15px" class="container">
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">
-                <spring:message code="new.comment"/>
+                <spring:message code="new.request"/>
             </label>
 
-            <form:textarea path="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
+            <form:textarea path="request" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
 
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit"
@@ -70,10 +72,6 @@
 </form:form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-<%--<script type="text/javascript">--%>
-<%--    function outputMessage() {--%>
-<%--        alert(<spring:message code="created.request"/> );--%>
-<%--    }--%>
-<%--</script>--%>
+
 </body>
 </html>

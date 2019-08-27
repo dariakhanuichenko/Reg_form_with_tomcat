@@ -23,7 +23,8 @@
 </head>
 
 <body>
-<nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
+<form action="${contextPath}/login?logout">
+<nav style="color:white" class="navbar fixed-top navbar-dark bg-primary" >
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,14 +45,14 @@
     <span style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
-    <button class="btn btn-light" type="submit" onclick="document.forms['logoutForm'].submit()">
+    <button class="btn btn-light" type="submit"   onclick="document.forms['logoutForm'].submit()">
         <spring:message code="logout"/>
     </button>
     </span>
 </nav>
+</form>
 
-
-<form:form method="POST" modelAttribute="requestDto" class="form-signin">
+<form:form method="POST"  modelAttribute="requestDto"  class="form-signin">
     <div style="margin-top: 15px" class="container">
 
         <div class="form-group">

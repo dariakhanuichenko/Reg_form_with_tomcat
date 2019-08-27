@@ -75,28 +75,25 @@ public class UserController {
     public String login(Model model, String error, String logout, Locale locale) {
         if (error != null) {
             model.addAttribute("error",
-                    ResourceBundle.getBundle("validationMessages", locale)
+                    ResourceBundle.getBundle("validationMessages",locale)
                             .getString("incorrect.usernameorpass"));
         }
 
-
         if (logout != null) {
             model.addAttribute("message",
-                    ResourceBundle.getBundle("validationMessages", locale)
+                    ResourceBundle.getBundle("validationMessages",locale)
                             .getString("logout.success"));
         }
         return "login";
+
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView getLocale(Locale locale, UserDto user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("locale", messageSource.getMessage("locale", new String[]{locale.getDisplayName(locale)}, locale));
-//        if(user.getRoles().equals("ROLE_USER")){
-//            return "redirect:/create_request";
-//        }
-//        return "redirect:/welcome";
         return modelAndView;
+
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

@@ -23,6 +23,7 @@
 </head>
 
 <body>
+<form action="${contextPath}/login?logout">
 <nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -48,6 +49,7 @@
     </button>
     </span>
 </nav>
+</form>
 <div style="margin-top: 15px" class="container">
     <h2>
         <spring:message code="my.request"/>

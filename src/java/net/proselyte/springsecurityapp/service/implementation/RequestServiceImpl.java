@@ -10,10 +10,7 @@ import net.proselyte.springsecurityapp.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalLong;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -69,8 +66,13 @@ public class RequestServiceImpl implements RequestService {
         }
         return requestList;
     }
-    public List<String>findAllRequestTitle(String status){
-        return requestDao.findRequestByStatus(status);
+    public Map<Long,String> findAllRequestTitle(String status){
+        log.info("{}","get requests with status new");
+        return requestDao.findIdAndRequestByStatus(status);
+    }
+
+    public List<RequestDto> findShortInfoByMasterAndStatus(String master, String status){
+        return findShortInfoByMasterAndStatus(master, status);
     }
 }
 

@@ -8,4 +8,5 @@ import lombok.Setter;
 public class RequestDto {
     String request;
     String username;
+    Long price;
 }

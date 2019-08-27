@@ -4,6 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%--<form:form method="get">--%>
+<%--<c:set var="request_title" value="${requestTitle}"></c:set></form:form>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +25,7 @@
 </head>
 
 <body>
+<form action="${contextPath}/login?logout">
 <nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -43,10 +46,12 @@
     </button>
     </span>
 </nav>
+</form>
 <div style="margin-top: 15px" class="container">
     <h2>
         <spring:message code="new.requests"/>
     </h2>
+
     <form:form method="post"  modelAttribute="requests">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <table class="table table-hover">
@@ -54,8 +59,8 @@
                 <tr>
 
                     <th><spring:message code="request"/></th>
-                    <th><spring:message code="status"/></th>
                     <th><spring:message code="price"/></th>
+                    <th><spring:message code="status"/></th>
                     <th><spring:message code="master"/></th>
                     <th><spring:message code="reason"/></th>
                     <th> actions</th>
@@ -95,7 +100,7 @@
                                         autofocus="true"/>
                         </td>
                         <td>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit"> save</button>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick=""> save</button>
                         </td>
                     </tr>
                     </tbody>
@@ -106,6 +111,7 @@
             <h3><spring:message code="empty.name"/></h3>
         </c:if>
     </form:form>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

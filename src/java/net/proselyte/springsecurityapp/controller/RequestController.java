@@ -8,6 +8,7 @@ import net.proselyte.springsecurityapp.dto.UserDto;
 import net.proselyte.springsecurityapp.service.UserService;
 import net.proselyte.springsecurityapp.service.implementation.RequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.export.annotation.ManagedOperationParameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -26,7 +29,7 @@ public class RequestController {
 
     @Autowired
     UserService userService;
-    @RequestMapping(value = {"/", "/create_request"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/create_request"}, method = RequestMethod.GET)
     public String create_request(Model model) {
         model.addAttribute("requestDto", new RequestDto());
         return "userCreateRequest";
@@ -53,6 +56,9 @@ public class RequestController {
 
         //log.info(requestService.getRequestByUser("sasha123451").toString());
         model.addAttribute("requestTitle", requestService.findAllRequestTitle("new"));
+        List<RequestInfoDto> requestInfoDto=new ArrayList<>();
+        Map<Long,String> temp=requestService.findAllRequestTitle("new");
+        //TODO: update request data
         model.addAttribute("masters", userService.getUsernamesByRole("ROLE_MASTER"));
         model.addAttribute("requests", new RequestInfoDto());
         return "managerAllRequests";
@@ -70,7 +76,7 @@ public class RequestController {
 
     @RequestMapping(value = {"/getUserRequest"}, method = RequestMethod.GET)
 
-    public String getRequestByUser(Principal principal, Model model ) {
+    public String getRequestByUser(Principal principal, Model model) {
 
         //log.info(requestService.getRequestByUser("sasha123451").toString());
         model.addAttribute("requests", requestService.getRequestByUser(principal.getName()));
@@ -80,5 +86,19 @@ public class RequestController {
     @RequestMapping(value = {"/getUserRequest"}, method = RequestMethod.POST)
     public String getRequestByUser(Model model) {
         return "userAllRequests";
+    }
+
+
+    @RequestMapping(value = {"/getMasterCompleteRequest"}, method = RequestMethod.GET)
+    public String getCompleteRequestByMaster(Principal principal, Model model ) {
+
+        log.info(requestService.findShortInfoByMasterAndStatus(principal.getName(),"completed").get(0).toString());
+        model.addAttribute("requests", requestService.findShortInfoByMasterAndStatus(principal.getName(),"completed"));
+        return "masterCompletedRequests";
+    }
+
+    @RequestMapping(value = {"/getMasterCompleteRequest"}, method = RequestMethod.POST)
+    public String getCompleteRequestByMaster(Model model) {
+        return "masterCompletedRequests";
     }
 }
