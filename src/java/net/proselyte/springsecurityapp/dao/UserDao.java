@@ -11,11 +11,14 @@ import java.util.List;
 
 public interface UserDao extends JpaRepository<User,Long> {
     User findByUsername(String username);
+
     @Query(value= "select  users.username from users " +
             "right join user_roles on user_roles.user_id=users.id " +
             "right join roles on user_roles.role_id=roles.id " +
             "where roles.name=:role", nativeQuery = true)
     List<String>findUserByRole(@Param("role") String role);
+
+    Long findIdByUsername(String Username);
 
 
 }

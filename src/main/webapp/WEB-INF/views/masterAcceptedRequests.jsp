@@ -24,7 +24,7 @@
 
 <body>
 <form action="${contextPath}/login?logout">
-    <nav style="color:white" class="navbar fixed-top navbar-dark bg-primary" >
+    <nav style="color:white" class="navbar fixed-top navbar-dark bg-primary">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,30 +46,52 @@
         <span style="float: right">
     <a href="?lang=en"><img src="resources/United-Kingdom-flag-icon.png" height=30px/></a>
     <a href="?lang=ua"><img src="resources/Ukraine-Flag-icon.png" height=30px/></a>
-    <button class="btn btn-light" type="submit"   onclick="document.forms['logoutForm'].submit()">
+    <button class="btn btn-light" type="submit" onclick="document.forms['logoutForm'].submit()">
         <spring:message code="logout"/>
     </button>
     </span>
     </nav>
 </form>
 
-<form:form method="POST"  modelAttribute=""  class="form-signin">
-    <div style="margin-top: 15px" class="container">
+<div style="margin-top: 15px" class="container">
+    <h2>
+        <spring:message code="completed.requests"/>
+    </h2>
+    <form:form method="post" modelAttribute="request" >
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <table class="table table-hover">
+                <thead>
+                <tr>
 
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">
-                <spring:message code="new.request"/>
-            </label>
+                    <th><spring:message code="request"/></th>
+                    <th><spring:message code="creator"/></th>
+                    <th><spring:message code="price"/></th>
+                    <th></th>
 
-            <form:textarea path="request" class="form-control" id="exampleFormControlTextarea1" rows="3"/>
+                </tr>
+                </thead>
+                <c:forEach items="${requests}" var="r">
+                    <tbody>
+                    <tr>
+                        <td><c:out value="${r.request}"/></td>
+                        <td><c:out value="${r.creator}"/></td>
+                        <td><c:out value="${r.price}"/></td>
+                        <td>
+                            <form:button path="id"  value="${r.id}">
+                                <spring:message code="execute"/>
+                            </form:button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </c:forEach>
+            </table>
+        </c:if>
+        <c:if test="${pageContext.request.userPrincipal.name == null}">
+            <h3><spring:message code="empty.name"/></h3>
+        </c:if>
+    </form:form>
+</div>
 
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                onclick=window.alert("created")>
-            <spring:message code="create"/>
-        </button>
-    </div>
-</form:form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 

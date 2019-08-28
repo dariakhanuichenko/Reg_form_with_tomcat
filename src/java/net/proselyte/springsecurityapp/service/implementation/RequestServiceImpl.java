@@ -71,8 +71,15 @@ public class RequestServiceImpl implements RequestService {
         return requestDao.findIdAndRequestByStatus(status);
     }
 
-    public List<RequestDto> findShortInfoByMasterAndStatus(String master, String status){
-        return findShortInfoByMasterAndStatus(master, status);
+    public List<Request> findShortInfoByMasterAndStatus(String master, String status){
+        return requestDao.findAllByMasterAndStatus(master, status);
+    }
+
+    @Override
+    public Integer updateStatus(String newStatus, String currentStatus, String nameMaster,Long id) {
+        return requestDao.updateStatus(newStatus,currentStatus,
+                userDao.findIdByUsername(nameMaster),
+                id);
     }
 }
 

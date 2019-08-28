@@ -17,12 +17,12 @@
         <intercept-url pattern="/create_comment" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/checkAllRequests" access="hasRole('ROLE_MANAGER')"/>
         <intercept-url pattern="/getMasterCompleteRequest" access="hasRole('ROLE_MASTER')"/>
+        <intercept-url pattern="/getMasterAcceptedRequest" access="hasRole('ROLE_MASTER')"/>
 
-        <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
+        <form-login login-page="/login"  authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>
 
         <logout logout-success-url="/login?logout"/>
-        <logout logout-success-url="/logout?"/>
 <!--        <logout logout-success-url="/getuserrequest?logout"/>-->
 <!--        <logout logout-success-url="/create_comment?logout"/>-->
 

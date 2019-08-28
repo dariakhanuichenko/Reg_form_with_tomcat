@@ -31,13 +31,13 @@
 
     </button>
 
-    <a style="color:white" class="nav-item nav-link active" href="userCreateRequest">
+    <a style="color:white" class="nav-item nav-link active" href="${contextPath}/create_request">
         <spring:message code="create.request"/>
     </a>
-    <a style="color:white" class="nav-item nav-link active" href="userAllRequests">
+    <a style="color:white" class="nav-item nav-link active" href=""${contextPath}/getUserRequest"">
         <spring:message code="my.request"/>
     </a>
-    <a style="color:white" class="nav-item nav-link active" href="#">
+    <a style="color:white" class="nav-item nav-link active" href="${contextPath}/create_comment">
         <spring:message code="create.comment"/>
     </a>
 
